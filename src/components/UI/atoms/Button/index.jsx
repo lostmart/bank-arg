@@ -4,16 +4,12 @@ const Button = ({ btnParams }) => {
 	return <button className={btnParams.nameOfClass}>{btnParams.text}</button>
 }
 
-// Button.propTypes = {
-// 	btnParams: PropTypes.objectOf(
-// 		PropTypes.shape({
-// 			text: PropTypes.string,
-// 		})
-// 	),
-// }
-
 Button.propTypes = {
-	btnParams: PropTypes.object,
+	/**
+	 *
+	 * @prop {object} btnParams - { nameOfClass & text }
+	 */
+	btnParams: PropTypes.objectOf(PropTypes.string),
 }
 
 export default Button

@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types'
 
 const SectionContent = ({ children }) => {
-	console.log(children)
 	return (
 		<>
 			{/* <div className="account-content-wrapper">
@@ -12,13 +11,18 @@ const SectionContent = ({ children }) => {
 			<div className="account-content-wrapper cta">
 				<button className="transaction-button">View transactions</button>
 			</div> */}
-            {children}
+			{children}
 		</>
 	)
 }
 
 SectionContent.propTypes = {
-	children: PropTypes.array,
+	/**
+	 *
+	 * @prop {object} btnParams -  html to be rendered on the page
+	 * @returns {React.JSX.Element}
+	 */
+	children: PropTypes.object,
 }
 
 export default SectionContent
