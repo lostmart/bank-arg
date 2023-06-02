@@ -38,9 +38,9 @@ const Home = () => {
 	]
 
 	const renderCards = () => {
-		return cardsArray.map((card) => {
+		return cardsArray.map((card, indx) => {
 			return (
-				<Card nameOfClass="feature-item">
+				<Card key={indx} nameOfClass="feature-item">
 					<Image
 						imgParams={{
 							src: card.imageUrl,
@@ -50,7 +50,7 @@ const Home = () => {
 					/>
 					<Title
 						nameOfClass="feature-item-title"
-						text="Promoted Content"
+						text={card.title}
 						titleElement="h3"
 					/>
 
@@ -59,10 +59,25 @@ const Home = () => {
 			)
 		})
 	}
-
+	
 	return (
 		<main className="main">
-			<Hero />
+			<Hero>
+				<Title
+					nameOfClass="sr-only"
+					text="Promoted Content"
+					titleElement="h2"
+				/>
+				<Section nameOfClass="hero-content">
+					<Paragraph text="No fees." nameOfClass="subtitle" />
+					<Paragraph text="No minimum deposit." nameOfClass="subtitle" />
+					<Paragraph text="High interest rates." nameOfClass="subtitle" />
+					<Paragraph
+						text="Open a savings account with Argent Bank today!"
+						nameOfClass="text"
+					/>
+				</Section>
+			</Hero>
 			<Section nameOfClass="features">
 				<Title nameOfClass="sr-only" text="Features" titleElement="h2" />
 				{renderCards()}

@@ -7,10 +7,11 @@ const Paragraph = ({ nameOfClass, text }) => {
 Paragraph.propTypes = {
 	/**
 	 *
-	 * @prop {object} btnParams - { nameOfClass & text }
+	 * @prop {string} btnParams - nameOfClass
 	 * nameOfClass(optional) - if no props passed, it'll provide a "paragraph" class
+	 * @prop {string} text - text to print on the page
 	 */
-	btnParams: PropTypes.objectOf(PropTypes.string),
+	btnParams: PropTypes.string
 }
 
 export default Paragraph

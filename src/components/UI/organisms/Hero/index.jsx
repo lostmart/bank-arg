@@ -1,15 +1,15 @@
-const Hero = () => {
-	return (
-		<div className="hero">
-			<section className="hero-content">
-				<h2 className="sr-only">Promoted Content</h2>
-				<p className="subtitle">No fees.</p>
-				<p className="subtitle">No minimum deposit.</p>
-				<p className="subtitle">High interest rates.</p>
-				<p className="text">Open a savings account with Argent Bank today!</p>
-			</section>
-		</div>
-	)
+import PropTypes from 'prop-types'
+
+const Hero = ({ children }) => {
+	return <div className="hero">{children}</div>
+}
+
+Hero.propTypes = {
+	/**
+	 * @prop {object | array} - children { html elements } ( one or more elements )
+	 * @returns { React.JSX.Element } - div element with a static background image and a class="hero"
+	 */
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 }
 
 export default Hero
