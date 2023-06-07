@@ -1,14 +1,26 @@
 import PropTypes from 'prop-types'
 
+/**
+ * Hero component
+ * @component
+ *
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The children elements of the hero.
+ * @returns {JSX.Element} - The rendered hero element.
+ */
+
 const Hero = ({ children }) => {
 	return <div className="hero">{children}</div>
 }
 
 Hero.propTypes = {
 	/**
-	 * @prop {object | array} - children { html elements } ( one or more elements )
-	 * @returns { React.JSX.Element } - div element with a static background image and a class="hero"
+	 * The children elements of the hero.
+	 * It can be a single React element or an array of React elements.
+	 *
+	 * @type {ReactNode}
 	 */
+
 	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 }
 
