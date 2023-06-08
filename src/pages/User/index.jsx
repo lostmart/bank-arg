@@ -3,7 +3,6 @@ import React from 'react'
 /*  UI  */
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
-import SectionContent from '../../components/UI/molecules/SectionContent'
 
 const titleStyle = {
 	fontSize: '2em',
