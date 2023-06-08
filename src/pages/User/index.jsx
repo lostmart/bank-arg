@@ -29,9 +29,9 @@ const UserPage = () => {
 	 * @returns {Array<JSX.Element>} - Array of rendered section elements.
 	 */
 	const renderSections = () => {
-		return sectionContentElem.map((section) => {
+		return sectionContentElem.map((section, indx) => {
 			return (
-				<Section className="account">
+				<Section key={indx} className="account">
 					<div className="account-content-wrapper">
 						<h3 className="account-title">{section.title}</h3>
 						<p className="account-amount">{section.accountAmmont}</p>

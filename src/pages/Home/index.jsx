@@ -68,7 +68,7 @@ const Home = () => {
 					text="Promoted Content"
 					titleElement="h2"
 				/>
-				<Section nameOfClass="hero-content">
+				<Section className="hero-content">
 					<Paragraph text="No fees." nameOfClass="subtitle" />
 					<Paragraph text="No minimum deposit." nameOfClass="subtitle" />
 					<Paragraph text="High interest rates." nameOfClass="subtitle" />
