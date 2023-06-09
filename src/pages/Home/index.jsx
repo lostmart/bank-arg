@@ -20,8 +20,7 @@ import { useSelector, useDispatch } from 'react-redux'
 const Home = () => {
 	const count = useSelector((state) => state.counter.value)
 
-	const user = useSelector((state) => state.user.data)
-	console.log(user)
+	
 
 	const cardsArray = [
 		{

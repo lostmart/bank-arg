@@ -4,9 +4,12 @@ import React from 'react'
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
 
+/*  redux  */
+import { useSelector, useDispatch } from 'react-redux'
+
 const titleStyle = {
 	fontSize: '2em',
-	width: '240px',
+	width: '295px',
 	margin: '0.67em auto',
 }
 
@@ -22,6 +25,10 @@ const UserPage = () => {
 			accountAmmont: '$10,928.42',
 		},
 	]
+
+	const user = useSelector((state) => state.user.data)
+	const userProfileData = user.userProfile
+	console.log(userProfileData.firstName)
 
 	/**
 	 * @function
@@ -52,7 +59,9 @@ const UserPage = () => {
 	return (
 		<main className="main bg-dark">
 			<div className="header">
-				<h2 style={titleStyle}>Welcome back Tony Jarvis!</h2>
+				<h2 style={titleStyle}>
+					Welcome back {userProfileData.firstName} {userProfileData.lastName}!
+				</h2>
 				<Button btnParams={{ text: 'Edit Name', className: 'edit-button' }} />
 			</div>
 			{renderSections()}

@@ -1,9 +1,9 @@
 [
 	{
 		"userProfile": {
-			"email": "martin@test02.net",
-			"firstName": "martin02",
-			"lastName": "test02",
+			"email": "martin@test01.net",
+			"firstName": "martin",
+			"lastName": "test01",
 			"createdAt": "2023-06-07T07:35:24.201Z",
 			"updatedAt": "2023-06-07T07:35:24.201Z",
 			"id": "6480333c01077a28bcb3f3ff"
