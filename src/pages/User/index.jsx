@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 
 /*  UI  */
 import Button from '../../components/UI/atoms/Button'
@@ -26,9 +26,30 @@ const UserPage = () => {
 		},
 	]
 
+	/* edit mode   */
+	const [editMode, setEditMode] = useState(false)
+
+	const handleEditClick = () => {
+		setEditMode((editMode) => !editMode)
+		console.log(editMode)
+	}
+
 	const user = useSelector((state) => state.user.data)
 	const userProfileData = user.userProfile
-	console.log(userProfileData.firstName)
+	// console.log(userProfileData.firstName)
+
+	/*  redner fn */
+	const RenderName = (userProfileData) => {
+		if (!editMode) {
+			return (
+				<>
+					{userProfileData.firstName} {userProfileData.lastName} !
+				</>
+			)
+		} else {
+			return <div>we're gonna edit !!</div>
+		}
+	}
 
 	/**
 	 * @function
@@ -60,9 +81,18 @@ const UserPage = () => {
 		<main className="main bg-dark">
 			<div className="header">
 				<h2 style={titleStyle}>
-					Welcome back {userProfileData.firstName} {userProfileData.lastName}!
+					Welcome back
+					<span>
+						<RenderName />
+					</span>
 				</h2>
-				<Button btnParams={{ text: 'Edit Name', className: 'edit-button' }} />
+				<Button
+					btnParams={{
+						text: 'Edit Name',
+						className: 'edit-button',
+						onClick: handleEditClick,
+					}}
+				/>
 			</div>
 			{renderSections()}
 		</main>

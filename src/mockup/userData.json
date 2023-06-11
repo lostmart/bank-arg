@@ -12,7 +12,7 @@
 	{
 		"userBalance": {
 			"userId": "6480333c01077a28bcb3f3ff",
-			"checkingAccount": {
+			 "checkingAccount": {
 				"id": "x8349",
 				"amount": 2082.79
 			},
