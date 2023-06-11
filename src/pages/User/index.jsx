@@ -41,11 +41,7 @@ const UserPage = () => {
 	/*  redner fn */
 	const RenderName = (userProfileData) => {
 		if (!editMode) {
-			return (
-				<>
-					{userProfileData.firstName} {userProfileData.lastName} !
-				</>
-			)
+			return <>el amor</>
 		} else {
 			return <div>we're gonna edit !!</div>
 		}
@@ -81,7 +77,7 @@ const UserPage = () => {
 		<main className="main bg-dark">
 			<div className="header">
 				<h2 style={titleStyle}>
-					Welcome back
+					Welcome back <br />
 					<span>
 						<RenderName />
 					</span>
