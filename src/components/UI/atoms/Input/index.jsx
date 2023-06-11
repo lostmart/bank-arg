@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types'
 
 const Input = ({ inputParams }) => {
-	return <input type={inputParams.type} id={inputParams.inputId} />
+	return (
+		<input
+			type={inputParams.type}
+			id={inputParams.inputId}
+			value={inputParams.value}
+		/>
+	)
 }
 
 // Input.propTypes = {

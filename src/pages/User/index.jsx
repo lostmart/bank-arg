@@ -4,6 +4,9 @@ import { useState } from 'react'
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
 
+/*  momlecule  */
+import EditName from '../../components/UI/molecules/EditName'
+
 /*  redux  */
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -31,7 +34,6 @@ const UserPage = () => {
 
 	const handleEditClick = () => {
 		setEditMode((editMode) => !editMode)
-		console.log(editMode)
 	}
 
 	const user = useSelector((state) => state.user.data)
@@ -39,11 +41,15 @@ const UserPage = () => {
 	// console.log(userProfileData.firstName)
 
 	/*  redner fn */
-	const RenderName = (userProfileData) => {
+	const RenderName = () => {
 		if (!editMode) {
-			return <>el amor</>
+			return (
+				<>
+					{userProfileData.firstName} {userProfileData.lastName}
+				</>
+			)
 		} else {
-			return <div>we're gonna edit !!</div>
+			return <EditName editData={{firstName: userProfileData.firstName, lastName: userProfileData.lastName}} />
 		}
 	}
 
@@ -51,7 +57,7 @@ const UserPage = () => {
 	 * @function
 	 * @returns {Array<JSX.Element>} - Array of rendered section elements.
 	 */
-	const renderSections = () => {
+	const RenderSections = () => {
 		return sectionContentElem.map((section, indx) => {
 			return (
 				<Section key={indx} className="account">
@@ -78,9 +84,7 @@ const UserPage = () => {
 			<div className="header">
 				<h2 style={titleStyle}>
 					Welcome back <br />
-					<span>
-						<RenderName />
-					</span>
+					<RenderName />
 				</h2>
 				<Button
 					btnParams={{
@@ -90,7 +94,7 @@ const UserPage = () => {
 					}}
 				/>
 			</div>
-			{renderSections()}
+			<RenderSections />
 		</main>
 	)
 }
