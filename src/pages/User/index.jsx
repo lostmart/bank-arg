@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const titleStyle = {
 	fontSize: '2em',
-	width: '295px',
 	margin: '0.67em auto',
 }
 
@@ -49,7 +48,14 @@ const UserPage = () => {
 				</>
 			)
 		} else {
-			return <EditName editData={{firstName: userProfileData.firstName, lastName: userProfileData.lastName}} />
+			return (
+				<EditName
+					editData={{
+						firstName: userProfileData.firstName,
+						lastName: userProfileData.lastName,
+					}}
+				/>
+			)
 		}
 	}
 
