@@ -9,6 +9,7 @@ import EditName from '../../components/UI/molecules/EditName'
 
 /*  redux  */
 import { useSelector, useDispatch } from 'react-redux'
+import { setLocalUser } from '../../store/user/localUser'
 
 const titleStyle = {
 	fontSize: '2em',
@@ -35,9 +36,13 @@ const UserPage = () => {
 		setEditMode((editMode) => !editMode)
 	}
 
+	const dispatch = useDispatch()
+
 	const user = useSelector((state) => state.user.data)
 	const userProfileData = user.userProfile
 	// console.log(userProfileData.firstName)
+
+	const localUser = useSelector((state) => state.user.data)
 
 	/*  redner fn */
 	const RenderName = () => {
@@ -53,6 +58,7 @@ const UserPage = () => {
 					editData={{
 						firstName: userProfileData.firstName,
 						lastName: userProfileData.lastName,
+						onClick: handleEditClick,
 					}}
 				/>
 			)
@@ -67,6 +73,12 @@ const UserPage = () => {
 		return sectionContentElem.map((section, indx) => {
 			return (
 				<Section key={indx} className="account">
+					<button
+						aria-label="Increment value"
+						onClick={() => dispatch(setLocalUser({ firstName: 'tu madre!' }))}>
+						Increment
+					</button>
+
 					<div className="account-content-wrapper">
 						<h3 className="account-title">{section.title}</h3>
 						<p className="account-amount">{section.accountAmmont}</p>
@@ -92,13 +104,15 @@ const UserPage = () => {
 					Welcome back <br />
 					<RenderName />
 				</h2>
-				<Button
-					btnParams={{
-						text: 'Edit Name',
-						className: 'edit-button',
-						onClick: handleEditClick,
-					}}
-				/>
+				{!editMode && (
+					<Button
+						btnParams={{
+							text: 'Edit Name',
+							className: 'edit-button',
+							onClick: handleEditClick,
+						}}
+					/>
+				)}
 			</div>
 			<RenderSections />
 		</main>

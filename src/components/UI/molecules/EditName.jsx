@@ -2,6 +2,16 @@ import Button from '../atoms/Button'
 import Input from '../atoms/Input'
 
 const EditName = ({ editData }) => {
+	const handleClick = (e) => {
+		e.preventDefault()
+		console.log('saved clicked ... ')
+	}
+
+	const handleCancelClick = (e) => {
+		e.preventDefault()
+		console.log('canceled clicked  ... ')
+	}
+
 	return (
 		<form className="edit-name-form">
 			<div>
@@ -15,10 +25,18 @@ const EditName = ({ editData }) => {
 
 			<div>
 				<Button
-					btnParams={{ className: 'edit-button-outline', text: 'Save' }}
+					btnParams={{
+						className: 'edit-button-outline',
+						text: 'Save',
+						onClick: handleClick,
+					}}
 				/>
 				<Button
-					btnParams={{ className: 'edit-button-outline', text: 'Cancel' }}
+					btnParams={{
+						className: 'edit-button-outline',
+						text: 'Cancel',
+						onClick: handleCancelClick,
+					}}
 				/>
 			</div>
 		</form>
