@@ -49,7 +49,7 @@ const UserPage = () => {
 					editData={{
 						firstName: userProfileData.firstName,
 						lastName: userProfileData.lastName,
-						onClick: handleEditClick,
+						handleClick: handleEditClick,
 					}}
 				/>
 			)
