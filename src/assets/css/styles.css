@@ -229,20 +229,34 @@ button {
 	margin: 20px auto;
 }
 
-.edit-name-form div {
+.edit-name-form-cont {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 	gap: 15px;
 	margin-bottom: 5px;
 }
 
-/*
-@media (min-width: 920px) {
-	.edit-name-form {
-		flex-wrap: nowrap;
+.input-name {
+	align-items: flex-end;
+}
+.input-name input {
+	margin-bottom: 0.7em;
+}
+
+.input-name:last-child {
+	align-items: flex-end;
+}
+
+@media (min-width: 780px) {
+	.edit-name-form-cont {
+		flex-direction: row;
+	}
+
+	.input-name:last-child {
+		align-items: flex-start;
 	}
 }
-*/
 
 .footer {
 	display: flex;

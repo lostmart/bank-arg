@@ -15,10 +15,10 @@ import iconChat from '../../assets/img/icon-chat.png'
 import iconMoney from '../../assets/img/icon-money.png'
 import iconSecurity from '../../assets/img/icon-security.png'
 
-import { useSelector, useDispatch } from 'react-redux'
+
 
 const Home = () => {
-	const count = useSelector((state) => state.counter.value)
+
 
 	
 
@@ -69,7 +69,6 @@ const Home = () => {
 	return (
 		<main className="main">
 			<Hero>
-				<span>{count}</span>
 				<Title
 					nameOfClass="sr-only"
 					text="Promoted Content"

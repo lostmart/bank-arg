@@ -8,8 +8,7 @@ import Section from '../../components/UI/organisms/Section'
 import EditName from '../../components/UI/molecules/EditName'
 
 /*  redux  */
-import { useSelector, useDispatch } from 'react-redux'
-import { setLocalUser } from '../../store/user/localUser'
+// import { useSelector, useDispatch } from 'react-redux'
 
 const titleStyle = {
 	fontSize: '2em',
@@ -36,23 +35,15 @@ const UserPage = () => {
 		setEditMode((editMode) => !editMode)
 	}
 
-	const dispatch = useDispatch()
-
-	const user = useSelector((state) => state.user.data)
-	const userProfileData = user.userProfile
+	// const user = useSelector((state) => state.user.data)
+	const userProfileData = { firstName: 'Pepe', lastName: 'Fernandez' }
 	// console.log(userProfileData.firstName)
 
-	const localUser = useSelector((state) => state.user.data)
+	// const localUser = useSelector((state) => state.user.data)
 
 	/*  redner fn */
-	const RenderName = () => {
-		if (!editMode) {
-			return (
-				<>
-					{userProfileData.firstName} {userProfileData.lastName}
-				</>
-			)
-		} else {
+	const EditNameForm = () => {
+		if (editMode) {
 			return (
 				<EditName
 					editData={{
@@ -62,6 +53,8 @@ const UserPage = () => {
 					}}
 				/>
 			)
+		} else {
+			return ''
 		}
 	}
 
@@ -73,12 +66,6 @@ const UserPage = () => {
 		return sectionContentElem.map((section, indx) => {
 			return (
 				<Section key={indx} className="account">
-					<button
-						aria-label="Increment value"
-						onClick={() => dispatch(setLocalUser({ firstName: 'tu madre!' }))}>
-						Increment
-					</button>
-
 					<div className="account-content-wrapper">
 						<h3 className="account-title">{section.title}</h3>
 						<p className="account-amount">{section.accountAmmont}</p>
@@ -102,8 +89,10 @@ const UserPage = () => {
 			<div className="header">
 				<h2 style={titleStyle}>
 					Welcome back <br />
-					<RenderName />
+					{!editMode && userProfileData.firstName}{' '}
+					{!editMode && userProfileData.lastName}
 				</h2>
+				<EditNameForm />
 				{!editMode && (
 					<Button
 						btnParams={{
