@@ -31,8 +31,18 @@ const UserPage = () => {
 	/* edit mode   */
 	const [editMode, setEditMode] = useState(false)
 
-	const handleEditClick = () => {
+	const handleEditClick = (e) => {
 		setEditMode((editMode) => !editMode)
+
+		console.log(e.target.innerHTML)
+		const buttonType = e.target.innerHTML
+		switch (buttonType) {
+			case 'Edit Name':
+				console.log('Edit el amor ')
+				break
+			default:
+				return true
+		}
 	}
 
 	// const user = useSelector((state) => state.user.data)

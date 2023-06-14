@@ -2,19 +2,7 @@ import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
 
 const EditName = ({ editData }) => {
-	console.log(editData)
-	/*
-	const handleClick = (e) => {
-		e.preventDefault()
-		console.log('saved clicked ... ')
-	}
-	
-
-	const handleCancelClick = (e) => {
-		e.preventDefault()
-		console.log('canceled clicked  ... ')
-	}
-	*/
+	// console.log(editData)
 	return (
 		<form className="edit-name-form">
 			<div className="edit-name-form-cont">
