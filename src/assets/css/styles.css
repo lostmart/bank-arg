@@ -330,6 +330,18 @@ button {
 	margin-bottom: 2rem;
 }
 
+.loading-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 75vh;
+}
+
+.loading-header div {
+	color: white;
+	font-size: 2em;
+}
+
 .transaction-button {
 	display: block;
 	width: 100%;

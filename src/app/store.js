@@ -1,11 +1,10 @@
 /*  redux store  */
 import { configureStore } from '@reduxjs/toolkit'
-import  localUserReducer from '../features/localUser'
-import nameEditReducer from '../features/nameEdit'
+import userReducer from '../features/userSlice'
+
 
 export const store = configureStore({
 	reducer: {
-		localUser: localUserReducer,
-		nameEdit: nameEditReducer,
+		user: userReducer,
 	},
 })

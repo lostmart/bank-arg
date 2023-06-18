@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /*  UI  */
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
+import Loader from '../../components/UI/atoms/Loader'
+
 
 /*  momlecule  */
 import EditName from '../../components/UI/molecules/EditName'
 
 /*  redux  */
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import userSlice, { fetchUserThunk } from '../../features/userSlice'
 
 const titleStyle = {
 	fontSize: '2em',
@@ -16,6 +19,14 @@ const titleStyle = {
 }
 
 const UserPage = () => {
+	const dispatch = useDispatch()
+
+	const user = useSelector((state) => state.user)
+
+	useEffect(() => {
+		dispatch(fetchUserThunk())
+	}, [])
+
 	/* data  */
 	const sectionContentElem = [
 		{
@@ -34,15 +45,35 @@ const UserPage = () => {
 	const handleEditClick = (e) => {
 		setEditMode((editMode) => !editMode)
 
-		console.log(e.target.innerHTML)
+		// console.log(e.target.innerHTML)
 		const buttonType = e.target.innerHTML
 		switch (buttonType) {
 			case 'Edit Name':
-				console.log('Edit el amor ')
+				console.log('editar')
+				break
+			case 'Cancel':
+				console.log('canelar ')
+				break
+			case 'Save':
+				console.log('salvar .. ')
 				break
 			default:
 				return true
 		}
+	}
+
+	/*   inputs changes    */
+	const [localUser, setLocalUser] = useState({
+		firstName: 'Andurro',
+		lastName: 'Gegoh',
+	})
+
+	const handleInputChange = (inputValue) => {
+		console.log('listening from the page component .. ', inputValue)
+		setLocalUser((prevState) => ({
+			...prevState,
+			firstName: inputValue,
+		}))
 	}
 
 	// const user = useSelector((state) => state.user.data)
@@ -57,9 +88,10 @@ const UserPage = () => {
 			return (
 				<EditName
 					editData={{
-						firstName: userProfileData.firstName,
-						lastName: userProfileData.lastName,
+						firstName: localUser.firstName,
+						lastName: localUser.lastName,
 						handleClick: handleEditClick,
+						handleInputChange: handleInputChange,
 					}}
 				/>
 			)
@@ -93,27 +125,43 @@ const UserPage = () => {
 			)
 		})
 	}
+	// {
+	// 	user.loading && <div>loading ...</div>
+	// }
+	if (user.loading) {
+		return (
+			<main className="main bg-dark">
+				<div className="loading-header">
+					<Loader />
+				</div>
+			</main>
+		)
+	}
 
 	return (
 		<main className="main bg-dark">
-			<div className="header">
-				<h2 style={titleStyle}>
-					Welcome back <br />
-					{!editMode && userProfileData.firstName}{' '}
-					{!editMode && userProfileData.lastName}
-				</h2>
-				<EditNameForm />
-				{!editMode && (
-					<Button
-						btnParams={{
-							text: 'Edit Name',
-							className: 'edit-button',
-							onClick: handleEditClick,
-						}}
-					/>
-				)}
-			</div>
-			<RenderSections />
+			{!user.loading && user.data ? (
+				<div>
+					<div className="header">
+						<h2 style={titleStyle}>
+							Welcome back <br />
+							{user.data.firstName} {user.data.lastName}
+						</h2>
+
+						<EditNameForm />
+						{!editMode && (
+							<Button
+								btnParams={{
+									text: 'Edit Name',
+									className: 'edit-button',
+									onClick: handleEditClick,
+								}}
+							/>
+						)}
+					</div>
+					<RenderSections />
+				</div>
+			) : null}
 		</main>
 	)
 }
