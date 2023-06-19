@@ -16,7 +16,7 @@ export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzA3Nzg2OSwiZXhwIjoxNjg3MTY0MjY5fQ.6jRXfK1ZG8bFxq99NVPx8RjuKn55ZH6xeICf-WHF63o',
+				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzE3ODE4MCwiZXhwIjoxNjg3MjY0NTgwfQ.GQyk_kZ9BxzqRglIcaOZSGXHXqO5IgCKr_QqmYF2ypI',
 		},
 	}
 
@@ -33,15 +33,15 @@ export const userSlice = createSlice({
 	initialState,
 	extraReducers: (builder) => {
 		builder.addCase(fetchUserThunk.pending, (state) => {
-			state.loading = true
+			state.isLoading = true
 		})
 		builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
-			state.loading = false
+			state.isLoading = false
 			state.data = action.payload
 			state.error = ''
 		})
 		builder.addCase(fetchUserThunk.rejected, (state, action) => {
-			state.loading = false
+			state.isLoading = false
 			state.users = []
 			state.error = action.error.message
 		})

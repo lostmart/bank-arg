@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
 /*  UI  */
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
 import Loader from '../../components/UI/atoms/Loader'
-
+import AlerIcon from '../../components/UI/atoms/Alert/AlerIcon'
 
 /*  momlecule  */
 import EditName from '../../components/UI/molecules/EditName'
@@ -42,42 +43,13 @@ const UserPage = () => {
 	/* edit mode   */
 	const [editMode, setEditMode] = useState(false)
 
-	const handleEditClick = (e) => {
+	const handleEditClick = (val) => {
+		dispatch(fetchUserThunk())
 		setEditMode((editMode) => !editMode)
-
-		// console.log(e.target.innerHTML)
-		const buttonType = e.target.innerHTML
-		switch (buttonType) {
-			case 'Edit Name':
-				console.log('editar')
-				break
-			case 'Cancel':
-				console.log('canelar ')
-				break
-			case 'Save':
-				console.log('salvar .. ')
-				break
-			default:
-				return true
-		}
-	}
-
-	/*   inputs changes    */
-	const [localUser, setLocalUser] = useState({
-		firstName: 'Andurro',
-		lastName: 'Gegoh',
-	})
-
-	const handleInputChange = (inputValue) => {
-		console.log('listening from the page component .. ', inputValue)
-		setLocalUser((prevState) => ({
-			...prevState,
-			firstName: inputValue,
-		}))
 	}
 
 	// const user = useSelector((state) => state.user.data)
-	const userProfileData = { firstName: 'Pepe', lastName: 'Fernandez' }
+	const userProfileData = { firstName: '', lastName: '' }
 	// console.log(userProfileData.firstName)
 
 	// const localUser = useSelector((state) => state.user.data)
@@ -88,10 +60,9 @@ const UserPage = () => {
 			return (
 				<EditName
 					editData={{
-						firstName: localUser.firstName,
-						lastName: localUser.lastName,
+						firstName: user.data.firstName,
+						lastName: user.data.lastName,
 						handleClick: handleEditClick,
-						handleInputChange: handleInputChange,
 					}}
 				/>
 			)
@@ -125,14 +96,27 @@ const UserPage = () => {
 			)
 		})
 	}
-	// {
-	// 	user.loading && <div>loading ...</div>
-	// }
-	if (user.loading) {
+	if (user.isLoading) {
 		return (
 			<main className="main bg-dark">
 				<div className="loading-header">
 					<Loader />
+				</div>
+			</main>
+		)
+	}
+
+	if (user.error && !user.isLoading) {
+		return (
+			<main className="main bg-dark">
+				<div className="loading-header">
+					{/*  user needs to log in again - token expored  */}
+					{user.error === 'Request failed with status code 401' && (
+						<Navigate to="/login" />
+					)}
+
+					<AlerIcon />
+					{user.error && <div>{user.error}</div>}
 				</div>
 			</main>
 		)

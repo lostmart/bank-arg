@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 const Input = ({ inputParams }) => {
 	const handleChange = (e) => {
-		const inputValue = e.target.value
+		const inputValue = e.target
 		inputParams.onChange(inputValue)
 	}
 
@@ -15,15 +15,6 @@ const Input = ({ inputParams }) => {
 		/>
 	)
 }
-
-// Input.propTypes = {
-// 	inputParams: PropTypes.objectOf(
-// 		PropTypes.shape({
-// 			type: PropTypes.string,
-// 			inputId: PropTypes.string,
-// 		})
-// 	),
-// }
 
 Input.propTypes = {
 	inputParams: PropTypes.object,
