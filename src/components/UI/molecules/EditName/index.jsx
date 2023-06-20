@@ -24,7 +24,7 @@ const EditName = ({ editData }) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzE3ODE4MCwiZXhwIjoxNjg3MjY0NTgwfQ.GQyk_kZ9BxzqRglIcaOZSGXHXqO5IgCKr_QqmYF2ypI',
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzE3ODE4MCwiZXhwIjoxNjg3MjY0NTgwfQ.GQyk_kZ9BxzqRglIaOZSGXHXqO5IgCKr_QqmYF2ypI',
 			},
 		}
 		const updateRes = await axios.put(url, data, config).catch((error) => {
@@ -58,7 +58,7 @@ const EditName = ({ editData }) => {
 		switch (buttonType) {
 			case 'Cancel':
 				console.log('cancel ...  ')
-				editData.handleClick("cancel")
+				editData.handleClick('cancel')
 				break
 			case 'Save':
 				updateUser()

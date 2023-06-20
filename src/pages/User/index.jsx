@@ -106,21 +106,21 @@ const UserPage = () => {
 		)
 	}
 
-	if (user.error && !user.isLoading) {
-		return (
-			<main className="main bg-dark">
-				<div className="loading-header">
-					{/*  user needs to log in again - token expored  */}
-					{user.error === 'Request failed with status code 401' && (
-						<Navigate to="/login" />
-					)}
+	// if (user.error && !user.isLoading) {
+	// 	return (
+	// 		<main className="main bg-dark">
+	// 			<div className="loading-header">
+	// 				{/*  user needs to log in again - token expired  */}
+	// 				{user.error === 'Request failed with status code 401' && (
+	// 					<Navigate to="/login" />
+	// 				)}
 
-					<AlerIcon />
-					{user.error && <div>{user.error}</div>}
-				</div>
-			</main>
-		)
-	}
+	// 				<AlerIcon />
+	// 				{user.error && <div>{user.error}</div>}
+	// 			</div>
+	// 		</main>
+	// 	)
+	// }
 
 	return (
 		<main className="main bg-dark">
