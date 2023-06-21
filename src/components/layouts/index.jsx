@@ -10,16 +10,10 @@ import Error from '../UI/organisms/Error'
 const Layout = () => {
 	const user = useSelector((state) => state.user)
 
-	const [showError, setShowError] = useState(false)
-
-	useEffect(() => {
-		user.error && setShowError(true)
-	}, [user.error])
-
 	return (
 		<div className="container">
 			<Header />
-			{!showError ? <Outlet /> : <Error />}
+			{!user.error ? <Outlet /> : <Error />}
 
 			<Footer />
 		</div>

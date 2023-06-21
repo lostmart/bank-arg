@@ -38,6 +38,18 @@
 	cursor: pointer;
 }
 
+.paragraph {
+	margin: 5px 0;
+}
+
+.pre_text {
+	font-size: 1.1em;
+	margin-top: 0.8em;
+	white-space: pre-wrap;
+	color: #727272;
+	/* new feature !  */
+	text-wrap: balance;
+}
 .alert_cont {
 	text-align: center;
 	display: flex;

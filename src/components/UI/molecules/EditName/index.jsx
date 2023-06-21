@@ -1,12 +1,14 @@
 import axios from 'axios'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { setUserError } from '../../../../features/userSlice'
+
 import { useState } from 'react'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
-import { useNavigate } from 'react-router-dom'
 
 const EditName = ({ editData }) => {
-	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
 	/*   inputs changes  - EDIT MOLECULE -    */
 	const [localUser, setLocalUser] = useState({
@@ -24,7 +26,7 @@ const EditName = ({ editData }) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzE3ODE4MCwiZXhwIjoxNjg3MjY0NTgwfQ.GQyk_kZ9BxzqRglIaOZSGXHXqO5IgCKr_QqmYF2ypI',
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzMzMTI0MSwiZXhwIjoxNjg3NDE3NjQxfQ.rCYACDOFlYyCOPkUpdH5LAFkMiBZi0UPQIw5tYlsjKY',
 			},
 		}
 		const updateRes = await axios.put(url, data, config).catch((error) => {
@@ -34,8 +36,9 @@ const EditName = ({ editData }) => {
 				// console.log(error.response.data)
 				// console.log(error.response.status)
 				if (error.response.status === 401) {
-					alert('an error acurred and you need to log in again')
-					navigate('/login')
+					//alert('an error acurred and you need to log in again')
+					//navigate('/login')
+					dispatch(setUserError())
 				}
 			} else if (error.request) {
 				// The request was made but no response was received

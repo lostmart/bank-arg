@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
@@ -16,7 +16,7 @@ export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzE3ODE4MCwiZXhwIjoxNjg3MjY0NTgwfQ.GQyk_kZ9BxzqRglIcaOZSGXHXqO5IgCKr_QqmYF2ypI',
+				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzMzMTI0MSwiZXhwIjoxNjg3NDE3NjQxfQ.rCYACDOFlYyCOPkUpdH5LAFkMiBZi0UPQIw5tYlsjKY',
 		},
 	}
 
@@ -27,6 +27,11 @@ export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 	// console.log('data:', data)
 	return response.data.body
 })
+
+/* reset users error  */
+// Action Creator
+export const resetUserError = createAction('user/resetError')
+export const setUserError = createAction('user/setUserError')
 
 export const userSlice = createSlice({
 	name: 'user',
@@ -44,6 +49,12 @@ export const userSlice = createSlice({
 			state.isLoading = false
 			state.users = []
 			state.error = action.error.message
+		})
+		builder.addCase(resetUserError, (state) => {
+			state.error = false
+		})
+		builder.addCase(setUserError, (state) => {
+			state.error = true
 		})
 	},
 })
