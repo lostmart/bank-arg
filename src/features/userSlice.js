@@ -1,4 +1,5 @@
 import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const initialState = {
@@ -6,26 +7,37 @@ const initialState = {
 	error: null,
 	data: null,
 }
+
+// export const loginUserThunk = createAsyncThunk('users/fetchUser', async () => {
+// 	const url = 'http://localhost:3001/api/v1/user/login'
+// 	const data = {
+// 		email: 'tony@stark.com',
+// 		password: 'password123',
+// 	}
+
+// 	const response = await axios.post(url, data)
+// 	console.log(response)
+// })
 export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 	const url = 'http://localhost:3001/api/v1/user/profile'
-	const data = {
-		email: 'tony@stark.com',
-		password: 'password123',
-	}
-	const config = {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization:
-				'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzMzMTI0MSwiZXhwIjoxNjg3NDE3NjQxfQ.rCYACDOFlYyCOPkUpdH5LAFkMiBZi0UPQIw5tYlsjKY',
-		},
-	}
+	const token = sessionStorage.getItem('token')
+	if (token) {
+		const data = {}
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		}
 
-	const response = await axios.post(url, data, config)
-	// console.log(response.data.message)
-	// const response = await fetch('http://localhost:3001/')
-	//const data = await response.json()
-	// console.log('data:', data)
-	return response.data.body
+		const response = await axios.post(url, data, config)
+		return response.data.body
+	} else {
+		/*  ?? needed ??  */
+		const navigate = useNavigate()
+		sessionStorage.clear()
+		navigate('/user')
+	}
 })
 
 /* reset users error  */
@@ -53,8 +65,12 @@ export const userSlice = createSlice({
 		builder.addCase(resetUserError, (state) => {
 			state.error = false
 		})
-		builder.addCase(setUserError, (state) => {
-			state.error = true
+		builder.addCase(setUserError, (state, action) => {
+			// console.log(action)
+			return {
+				...state,
+				error: action.payload,
+			}
 		})
 	},
 })

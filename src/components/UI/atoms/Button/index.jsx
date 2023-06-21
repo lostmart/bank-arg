@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 
 const Button = ({ btnParams }) => {
-	const hadleClick = (e) => {
+	const handleClick = (e) => {
 		btnParams.onClick(e)
 	}
 
 	return (
-		<button onClick={hadleClick} className={btnParams.className}>
+		<button onClick={handleClick} className={btnParams.className}>
 			{btnParams.text}
 		</button>
 	)

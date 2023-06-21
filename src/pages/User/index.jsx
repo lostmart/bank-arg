@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom'
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
 import Loader from '../../components/UI/atoms/Loader'
-import AlerIcon from '../../components/UI/atoms/Alert/AlerIcon'
+
 
 /*  momlecule  */
 import EditName from '../../components/UI/molecules/EditName'
@@ -43,7 +43,7 @@ const UserPage = () => {
 	/* edit mode   */
 	const [editMode, setEditMode] = useState(false)
 
-	const handleEditClick = (val) => {
+	const handleEditClick = () => {
 		dispatch(fetchUserThunk())
 		setEditMode((editMode) => !editMode)
 	}

@@ -18,15 +18,13 @@ const EditName = ({ editData }) => {
 
 	const updateUser = async () => {
 		const url = 'http://localhost:3001/api/v1/user/profile'
-		const data = {
-			firstName: localUser.firstName,
-			lastName: localUser.lastName,
-		}
+		const data = localUser
+		const token = sessionStorage.getItem('token')
+
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODAyZTc3NmQyMWY5MzlkMDQzZjA1ZiIsImlhdCI6MTY4NzMzMTI0MSwiZXhwIjoxNjg3NDE3NjQxfQ.rCYACDOFlYyCOPkUpdH5LAFkMiBZi0UPQIw5tYlsjKY',
+				Authorization: `Bearer ${token}`,
 			},
 		}
 		const updateRes = await axios.put(url, data, config).catch((error) => {
@@ -38,7 +36,8 @@ const EditName = ({ editData }) => {
 				if (error.response.status === 401) {
 					//alert('an error acurred and you need to log in again')
 					//navigate('/login')
-					dispatch(setUserError())
+					sessionStorage.clear()
+					dispatch(setUserError(error.response.status))
 				}
 			} else if (error.request) {
 				// The request was made but no response was received
@@ -60,7 +59,6 @@ const EditName = ({ editData }) => {
 		const buttonType = e.target.innerHTML
 		switch (buttonType) {
 			case 'Cancel':
-				console.log('cancel ...  ')
 				editData.handleClick('cancel')
 				break
 			case 'Save':
