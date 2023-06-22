@@ -44,6 +44,7 @@ export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 // Action Creator
 export const resetUserError = createAction('user/resetError')
 export const setUserError = createAction('user/setUserError')
+export const destroyUserData = createAction('user/destroyUserData')
 
 export const userSlice = createSlice({
 	name: 'user',
@@ -66,10 +67,16 @@ export const userSlice = createSlice({
 			state.error = false
 		})
 		builder.addCase(setUserError, (state, action) => {
-			// console.log(action)
 			return {
 				...state,
 				error: action.payload,
+			}
+		})
+		builder.addCase(destroyUserData, (state, action) => {
+			return {
+				...state,
+				error: null,
+				data: null,
 			}
 		})
 	},
