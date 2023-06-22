@@ -3,7 +3,6 @@ import AlerIcon from '../../atoms/Alert/AlerIcon'
 import { resetUserError } from '../../../../features/userSlice'
 import { useNavigate } from 'react-router-dom'
 
-
 import styles from './index.module.css'
 
 const Error = () => {
@@ -12,6 +11,7 @@ const Error = () => {
 	const user = useSelector((state) => state.user)
 
 	const closeModal = () => {
+		sessionStorage.clear()
 		dispatch(resetUserError())
 		navigate('/login')
 	}

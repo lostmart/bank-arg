@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 /*  UI  */
 import Button from '../../components/UI/atoms/Button'
 import Section from '../../components/UI/organisms/Section'
 import Loader from '../../components/UI/atoms/Loader'
 
-
 /*  momlecule  */
 import EditName from '../../components/UI/molecules/EditName'
 
-/*  redux  */
+/* redux  */
 import { useSelector, useDispatch } from 'react-redux'
-import userSlice, { fetchUserThunk } from '../../features/userSlice'
+import { fetchUserThunk } from '../../features/userSlice'
+import { fetchTransactionThunk } from '../../features/transactionSlice'
+
 
 const titleStyle = {
 	fontSize: '2em',
@@ -23,22 +24,12 @@ const UserPage = () => {
 	const dispatch = useDispatch()
 
 	const user = useSelector((state) => state.user)
+	const balance = useSelector((state) => state.balance)
 
 	useEffect(() => {
 		dispatch(fetchUserThunk())
+		dispatch(fetchTransactionThunk())
 	}, [])
-
-	/* data  */
-	const sectionContentElem = [
-		{
-			title: 'Argent Bank Checking (x8349)',
-			accountAmmont: '$2,082.79',
-		},
-		{
-			title: 'Argent Bank Savings (x6712)',
-			accountAmmont: '$10,928.42',
-		},
-	]
 
 	/* edit mode   */
 	const [editMode, setEditMode] = useState(false)
@@ -47,12 +38,6 @@ const UserPage = () => {
 		dispatch(fetchUserThunk())
 		setEditMode((editMode) => !editMode)
 	}
-
-	// const user = useSelector((state) => state.user.data)
-	const userProfileData = { firstName: '', lastName: '' }
-	// console.log(userProfileData.firstName)
-
-	// const localUser = useSelector((state) => state.user.data)
 
 	/*  redner fn */
 	const EditNameForm = () => {
@@ -76,25 +61,29 @@ const UserPage = () => {
 	 * @returns {Array<JSX.Element>} - Array of rendered section elements.
 	 */
 	const RenderSections = () => {
-		return sectionContentElem.map((section, indx) => {
-			return (
-				<Section key={indx} className="account">
-					<div className="account-content-wrapper">
-						<h3 className="account-title">{section.title}</h3>
-						<p className="account-amount">{section.accountAmmont}</p>
-						<p className="account-amount-description">Available Balance</p>
-					</div>
-					<div className="account-content-wrapper cta">
-						<Button
-							btnParams={{
-								text: 'View transactions',
-								className: 'transaction-button',
-							}}
-						/>
-					</div>
-				</Section>
-			)
-		})
+		if (balance.data) {
+			const data = balance.data[0].userBalance.data
+			return data.map((section, indx) => {
+				return (
+					<Section key={indx} className="account">
+						<div className="account-content-wrapper">
+							<h3 className="account-title">
+								{section.title} ({section.id})
+							</h3>
+							<p className="account-amount">$ {section.amount}</p>
+							<p className="account-amount-description">Available Balance</p>
+						</div>
+						<div className="account-content-wrapper cta">
+							<Link
+								className="transaction-button"
+								to={`/transactions/${section.id}`}>
+								View Transactions
+							</Link>
+						</div>
+					</Section>
+				)
+			})
+		}
 	}
 	if (user.isLoading) {
 		return (
@@ -105,22 +94,6 @@ const UserPage = () => {
 			</main>
 		)
 	}
-
-	// if (user.error && !user.isLoading) {
-	// 	return (
-	// 		<main className="main bg-dark">
-	// 			<div className="loading-header">
-	// 				{/*  user needs to log in again - token expired  */}
-	// 				{user.error === 'Request failed with status code 401' && (
-	// 					<Navigate to="/login" />
-	// 				)}
-
-	// 				<AlerIcon />
-	// 				{user.error && <div>{user.error}</div>}
-	// 			</div>
-	// 		</main>
-	// 	)
-	// }
 
 	return (
 		<main className="main bg-dark">
@@ -143,6 +116,7 @@ const UserPage = () => {
 							/>
 						)}
 					</div>
+
 					<RenderSections />
 				</div>
 			) : null}

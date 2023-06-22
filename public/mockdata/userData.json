@@ -1,0 +1,64 @@
+[
+	{
+		"userBalance": {
+			"userId": "6480333c01077a28bcb3f3ff",
+			"data": [
+				{
+					"id": "x8349",
+					"amount": 2082.79,
+					"title": "Argent Bank Checking"
+				},
+				{
+					"id": "x6712",
+					"amount": 10928.42,
+					"title": "Argent Bank Savings"
+				},
+				{
+					"id": "x8349",
+					"amount": 184.3,
+					"title": "Argent Bank Credit Card"
+				}
+			]
+		}
+	},
+	{
+		"userTransactions": {
+			"userId": "6480333c01077a28bcb3f3ff",
+			"data": {
+				"accoundId": "x8349",
+				"transactions": [
+					{
+						"date": "2023-06-07T07:35:24.201Z",
+						"description": "",
+						"amount": 450,
+						"accoundId": "x8349",
+						"transactionType": "Electronic",
+						"category": "Food",
+						"notes": "some notes",
+						"balance": 2082.79
+					},
+					{
+						"date": "2023-06-07T07:35:24.201Z",
+						"description": "",
+						"amount": 450,
+						"accoundId": "x8349",
+						"transactionType": "Direct debit",
+						"category": "Food",
+						"notes": "some notes",
+						"balance": 2082.79
+					},
+					{
+						"date": "2023-06-07T07:35:24.201Z",
+						"description": "",
+						"amount": 450,
+						"accoundId": "x8349",
+						"transactionType": "Check",
+						"category": "Food",
+						"notes": "some notes",
+						"balance": 2082.79
+					}
+				]
+			}
+		}
+	}
+]

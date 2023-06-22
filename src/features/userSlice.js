@@ -2,6 +2,7 @@ import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+
 const initialState = {
 	isLoading: false,
 	error: null,
@@ -54,6 +55,7 @@ export const userSlice = createSlice({
 			state.isLoading = true
 		})
 		builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
+	
 			state.isLoading = false
 			state.data = action.payload
 			state.error = ''

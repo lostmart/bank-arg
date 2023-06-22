@@ -14,6 +14,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import UserPage from './pages/User'
 import NotFound from './pages/NotFound'
+import Transactions from './pages/Transactions'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -25,6 +26,7 @@ root.render(
 						<Route index element={<Home />} />
 						<Route path="login" element={<Login />} />
 						<Route path="user" element={<UserPage />} />
+						<Route path="transactions/:id" element={<Transactions />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
