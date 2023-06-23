@@ -39,6 +39,7 @@ const Login = () => {
 	}
 
 	const handleSubmit = async (e) => {
+		console.log('submitting ...')
 		e.preventDefault()
 
 		const url = 'http://localhost:3001/api/v1/user/login'
@@ -48,9 +49,10 @@ const Login = () => {
 				sessionStorage.setItem('token', response.data.body.token)
 			navigate('/user')
 		} catch (err) {
+			console.log('error !')
 			sessionStorage.clear()
 			err.response
-				? dispatch(setUserError(err.response.data.message)) 
+				? dispatch(setUserError(err.response.data.message))
 				: dispatch(setUserError(err.message))
 		}
 	}

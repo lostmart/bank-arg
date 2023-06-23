@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { store } from './app/store'
 import './assets/css/styles.css'
 
@@ -17,6 +17,14 @@ import NotFound from './pages/NotFound'
 import Transactions from './pages/Transactions'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
+const ProtectedRoute = ({ children }) => {
+	const user = useSelector((state) => state.user)
+	if (user.data) {
+		return children
+	}
+}
+
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
@@ -25,7 +33,14 @@ root.render(
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
 						<Route path="login" element={<Login />} />
-						<Route path="user" element={<UserPage />} />
+						<Route
+							path="user"
+							element={
+								<ProtectedRoute>
+									<UserPage />
+								</ProtectedRoute>
+							}
+						/>
 						<Route path="transactions/:id" element={<Transactions />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
