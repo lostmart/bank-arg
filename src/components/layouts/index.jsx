@@ -6,8 +6,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserThunk } from '../../features/userSlice'
 import { fetchTransactionThunk } from '../../features/transactionSlice'
 
-
-
 /*  organisms  */
 import Header from '../UI/organisms/Header'
 import Footer from '../UI/organisms/Footer'
@@ -19,9 +17,11 @@ const Layout = () => {
 	const user = useSelector((state) => state.user)
 	const balance = useSelector((state) => state.balance)
 
-	useEffect(() => {	
+	useEffect(() => {
+		if (sessionStorage.getItem('token')) {
 			dispatch(fetchUserThunk())
 			dispatch(fetchTransactionThunk())
+		}
 	}, [])
 
 	return (

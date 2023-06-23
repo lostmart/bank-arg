@@ -1,0 +1,48 @@
+.transaction {
+	background: white;
+	border: 2px solid grey;
+	border-radius: 2px;
+	min-height: 113px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.transaction_title {
+	font-size: 0.8em;
+	margin: 0;
+}
+
+.transaction h3 {
+	margin: 4px 0;
+	font-size: 1.8em;
+}
+
+.transaction span {
+	font-size: 0.7em;
+}
+
+.table {
+	width: 100%;
+	max-width: 800px;
+	margin: 2em auto;
+	border: none;
+	border-collapse: collapse;
+}
+
+.table tr {
+	background-color: white;
+	border: none;
+}
+
+.table td {
+	padding: 0;
+	border: none;
+}
+
+@media (min-width: 920px) {
+	.table td {
+		padding: 0.8em 0.1em;
+	}
+}

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Provider, useSelector } from 'react-redux'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import { store } from './app/store'
 import './assets/css/styles.css'
 
@@ -19,9 +19,11 @@ import Transactions from './pages/Transactions'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 const ProtectedRoute = ({ children }) => {
-	const user = useSelector((state) => state.user)
-	if (user.data) {
+	if (sessionStorage.getItem('token')) {
 		return children
+	} else {
+		console.log('navegate !!!')
+		return <Navigate to="/login" />
 	}
 }
 
@@ -32,7 +34,7 @@ root.render(
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
-						<Route path="login" element={<Login />} />
+						<Route path="login" element={<Login />} />/{' '}
 						<Route
 							path="user"
 							element={
@@ -41,7 +43,14 @@ root.render(
 								</ProtectedRoute>
 							}
 						/>
-						<Route path="transactions/:id" element={<Transactions />} />
+						<Route
+							path="transactions/:id"
+							element={
+								<ProtectedRoute>
+									<Transactions />
+								</ProtectedRoute>
+							}
+						/>
 						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>

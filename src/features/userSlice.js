@@ -56,7 +56,7 @@ export const userSlice = createSlice({
 		builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.data = action.payload
-			state.error = ''
+			state.error = null
 		})
 		builder.addCase(fetchUserThunk.rejected, (state, action) => {
 			state.isLoading = false

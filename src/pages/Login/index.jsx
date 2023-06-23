@@ -11,6 +11,9 @@ import Input from '../../components/UI/atoms/Input' // Props:  type | id
 import Label from '../../components/UI/atoms/Label' // Props: text | id (for)
 import Button from '../../components/UI/atoms/Button'
 
+import { fetchUserThunk } from '../../features/userSlice'
+
+
 const Login = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -47,9 +50,9 @@ const Login = () => {
 			const response = await axios.post(url, userDetails)
 			response.status === 200 &&
 				sessionStorage.setItem('token', response.data.body.token)
+			dispatch(fetchUserThunk())
 			navigate('/user')
 		} catch (err) {
-			console.log('error !')
 			sessionStorage.clear()
 			err.response
 				? dispatch(setUserError(err.response.data.message))

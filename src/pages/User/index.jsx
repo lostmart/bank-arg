@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserThunk } from '../../features/userSlice'
 import { fetchTransactionThunk } from '../../features/transactionSlice'
 
-
 const titleStyle = {
 	fontSize: '2em',
 	margin: '0.67em auto',
@@ -24,7 +23,7 @@ const UserPage = () => {
 	const dispatch = useDispatch()
 
 	const user = useSelector((state) => state.user)
-	const balance = useSelector((state) => state.balance)
+	const transactions = useSelector((state) => state.transactions)
 
 	useEffect(() => {
 		dispatch(fetchUserThunk())
@@ -61,8 +60,8 @@ const UserPage = () => {
 	 * @returns {Array<JSX.Element>} - Array of rendered section elements.
 	 */
 	const RenderSections = () => {
-		if (balance.data) {
-			const data = balance.data[0].userBalance.data
+		if (transactions.data) {
+			const data = transactions.data[0].userBalance.data
 			return data.map((section, indx) => {
 				return (
 					<Section key={indx} className="account">

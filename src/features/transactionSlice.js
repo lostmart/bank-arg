@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export const balanceSlice = createSlice({
-	name: 'balance',
+	name: 'transactions',
 	initialState,
 	extraReducers: (builder) => {
 		builder.addCase(fetchTransactionThunk.pending, (state) => {

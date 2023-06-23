@@ -6,6 +6,6 @@ import balanceReducer from '../features/transactionSlice'
 export const store = configureStore({
 	reducer: {
 		user: userReducer,
-		balance: balanceReducer,
+		transactions: balanceReducer,
 	},
 })
