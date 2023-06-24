@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import { store } from './app/store'
 import './assets/css/styles.css'
 
+import { useSelector } from 'react-redux'
+
 /* layout   */
 import Layout from './components/layouts'
 
@@ -19,10 +21,11 @@ import Transactions from './pages/Transactions'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 const ProtectedRoute = ({ children }) => {
-	if (sessionStorage.getItem('token')) {
+	const user = useSelector((state) => state.user)
+
+	if (!user.error) {
 		return children
 	} else {
-		console.log('navegate !!!')
 		return <Navigate to="/login" />
 	}
 }

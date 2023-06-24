@@ -1,5 +1,3 @@
-// import { PropTypes } from 'prop-types'
-
 /**
  * @prop {string} titleElement
  * @prop {string} nameOfClass

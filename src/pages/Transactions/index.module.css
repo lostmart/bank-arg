@@ -31,6 +31,10 @@
 	border-collapse: collapse;
 }
 
+.table .table_header {
+	background-color: transparent;
+}
+
 .table tr {
 	background-color: white;
 	border: none;
