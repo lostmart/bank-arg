@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 /*  redux  */
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserThunk } from '../../features/userSlice'
-import { fetchTransactionThunk } from '../../features/transactionSlice'
+
 
 /*  organisms  */
 import Header from '../UI/organisms/Header'
@@ -20,7 +20,6 @@ const Layout = () => {
 	useEffect(() => {
 		if (sessionStorage.getItem('token')) {
 			dispatch(fetchUserThunk())
-			dispatch(fetchTransactionThunk())
 		}
 	}, [])
 

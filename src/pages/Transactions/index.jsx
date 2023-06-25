@@ -5,28 +5,24 @@ import { useEffect } from 'react'
 
 import { fetchUserThunk } from '../../features/userSlice'
 
- import {transactionsData} from '../../mockup/transactionsData'
-
 import styles from './index.module.css'
 import Title from '../../components/UI/atoms/Title'
 import Table from '../../components/UI/organisms/Table'
 
 const Transactions = () => {
-	
 	const dispatch = useDispatch()
 	const user = useSelector((state) => state.user)
 	const { id } = useParams()
 
-	
 	useEffect(() => {
 		dispatch(fetchUserThunk())
 	}, [])
-	
-	console.log(transactionsData)
+
 	if (user.data) {
-		const selectedAccount = transactionsData.userTransactions.accounts.filter(
+		const selectedAccount = user.transactions.accounts.filter(
 			(account) => account.transactionId === id
 		)[0]
+		console.log(user.transactions.accounts)
 		return (
 			<main className="main bg-dark">
 				<Section className={styles.transaction}>

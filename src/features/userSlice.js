@@ -1,23 +1,15 @@
 import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { useNavigate } from 'react-router-dom'
+import { transactionsData } from '../mockup/transactionsData'
 import axios from 'axios'
 
 const initialState = {
 	isLoading: false,
 	error: null,
 	data: null,
+	transactions: null,
 }
 
-// export const loginUserThunk = createAsyncThunk('users/fetchUser', async () => {
-// 	const url = 'http://localhost:3001/api/v1/user/login'
-// 	const data = {
-// 		email: 'tony@stark.com',
-// 		password: 'password123',
-// 	}
-
-// 	const response = await axios.post(url, data)
-// 	console.log(response)
-// })
 export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 	const url = 'http://localhost:3001/api/v1/user/profile'
 	const token = sessionStorage.getItem('token')
@@ -56,11 +48,13 @@ export const userSlice = createSlice({
 		builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
 			state.isLoading = false
 			state.data = action.payload
+			state.transactions = transactionsData.userTransactions
 			state.error = null
 		})
 		builder.addCase(fetchUserThunk.rejected, (state, action) => {
 			state.isLoading = false
 			state.users = []
+			state.transactions = null
 			state.error = action.error.message
 		})
 		builder.addCase(resetUserError, (state) => {

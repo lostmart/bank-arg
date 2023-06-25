@@ -12,7 +12,7 @@ import EditName from '../../components/UI/molecules/EditName'
 /* redux  */
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserThunk } from '../../features/userSlice'
-import { fetchTransactionThunk } from '../../features/transactionSlice'
+// import { fetchTransactionThunk } from '../../features/transactionSlice'
 
 const titleStyle = {
 	fontSize: '2em',
@@ -23,11 +23,9 @@ const UserPage = () => {
 	const dispatch = useDispatch()
 
 	const user = useSelector((state) => state.user)
-	const transactions = useSelector((state) => state.transactions)
 
 	useEffect(() => {
 		dispatch(fetchUserThunk())
-		dispatch(fetchTransactionThunk())
 	}, [])
 
 	/* edit mode   */
@@ -60,22 +58,21 @@ const UserPage = () => {
 	 * @returns {Array<JSX.Element>} - Array of rendered section elements.
 	 */
 	const RenderSections = () => {
-		if (transactions.data) {
-			const data = transactions.data[0].userBalance.data
-			return data.map((section, indx) => {
+		if (user.transactions) {
+			return user.transactions.accounts.map((section, indx) => {
 				return (
 					<Section key={indx} className="account">
 						<div className="account-content-wrapper">
 							<h3 className="account-title">
-								{section.title} ({section.id})
+								{section.title} ({section.transactionId})
 							</h3>
-							<p className="account-amount">$ {section.amount}</p>
+							<p className="account-amount">$ {section.balance}</p>
 							<p className="account-amount-description">Available Balance</p>
 						</div>
 						<div className="account-content-wrapper cta">
 							<Link
 								className="transaction-button"
-								to={`/transactions/${section.id}`}>
+								to={`/transactions/${section.transactionId}`}>
 								View Transactions
 							</Link>
 						</div>

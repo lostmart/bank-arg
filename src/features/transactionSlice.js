@@ -1,19 +1,8 @@
-import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice, createAction } from '@reduxjs/toolkit'
 
-export const fetchTransactionThunk = createAsyncThunk(
-	'transaction/fetchTransaction',
-	async () => {
-		const url = './mockdata/userData.json'
-		const response = await axios.get(url)
-		if (response.status === 200) {
-			return response.data
-		}
-	}
-)
+
 
 const initialState = {
-	isLoading: false,
 	error: null,
 	data: null,
 }
@@ -21,17 +10,15 @@ const initialState = {
 export const balanceSlice = createSlice({
 	name: 'transactions',
 	initialState,
-	extraReducers: (builder) => {
-		builder.addCase(fetchTransactionThunk.pending, (state) => {
-			state.isLoading = true
-		})
+	reducers: {
+		createTransactions: (state, action) => {
+			return {
+				...state,
+				data: action.payload
+			}
+		}
+	}
 
-		builder.addCase(fetchTransactionThunk.fulfilled, (state, action) => {
-			state.isLoading = false
-			state.data = action.payload
-			state.error = ''
-		})
-	},
 })
 
 export const { fetchDataStart } = balanceSlice.actions
