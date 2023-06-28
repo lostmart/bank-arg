@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { FaChevronUp, FaPencilAlt } from 'react-icons/fa'
-import Input from '../../atoms/Input'
+import EditTransaction from '../../molecules/EditTransaction'
 
 /*  mini comp  */
 const TransactionContent = ({ children }) => {
@@ -15,21 +15,26 @@ const Accordion = () => {
 		notes: false,
 	})
 
+	/*  methods  */
 	const handleEditClick = (val) => {
-		setEditMode((prev) => {
+		setEditMode(() => {
 			if (val === 'category') {
 				return {
 					category: true,
 					notes: false,
 				}
-			} else {
+			} else if (val === 'notes') {
 				return {
 					category: false,
 					notes: true,
 				}
+			} else {
+				return {
+					category: false,
+					notes: false,
+				}
 			}
 		})
-		console.log(editMode)
 	}
 
 	const handleClick = () => {
@@ -59,19 +64,37 @@ const Accordion = () => {
 						{!editMode.category ? (
 							<TransactionContent>
 								Food
-								<button onClick={() => handleEditClick('category')}>
+								<button
+									className="panel_edit"
+									onClick={() => handleEditClick('category')}>
 									<FaPencilAlt />
 								</button>
 							</TransactionContent>
 						) : (
-							<Input inputParams={{ type: 'text' }} />
+							<EditTransaction
+								editParams={{
+									onClick: handleEditClick,
+								}}
+							/>
 						)}
 					</li>
 					<li>
 						Notes:
-						<button>
-							<FaPencilAlt />
-						</button>
+						{!editMode.notes ? (
+							<TransactionContent>
+								<button
+									className="panel_edit"
+									onClick={() => handleEditClick('notes')}>
+									<FaPencilAlt />
+								</button>
+							</TransactionContent>
+						) : (
+							<EditTransaction
+								editParams={{
+									onClick: handleEditClick,
+								}}
+							/>
+						)}
 					</li>
 				</ul>
 			</div>

@@ -444,9 +444,14 @@ a {
 
 .table li {
 	padding: 0.5em 0;
+	text-align: left;
+	width: 95%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
-.panel button {
+.panel .panel_edit {
 	border: none;
 	background-color: transparent;
 	padding-left: 1em;
