@@ -22,7 +22,6 @@ const Transactions = () => {
 		const selectedAccount = user.transactions.accounts.filter(
 			(account) => account.transactionId === id
 		)[0]
-		console.log(user.transactions.accounts)
 		return (
 			<main className="main bg-dark">
 				<Section className={styles.transaction}>
@@ -38,13 +37,13 @@ const Transactions = () => {
 					/>
 					<span>Available Balance</span>
 				</Section>
-				<Section>
-					<Table />
-				</Section>
+				<div>
+					<Table transactions={selectedAccount.transactions} />
+				</div>
 			</main>
 		)
 	} else {
-		return <div>algo terrible ha sucedido !!</div>
+		return <Navigate to="/login" />
 	}
 }
 

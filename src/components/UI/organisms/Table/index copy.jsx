@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { FaChevronUp, FaPencilAlt } from 'react-icons/fa'
 import Input from '../../atoms/Input'
-import Accordion from '../Accordion'
 
 /*  utils  */
 import dateFormat from '../../../../utils/dateFormat'
 import dollarsFormat from '../../../../utils/dollaresFormat'
 
-const TransactionContent = ({ children }) => {
+
+const TransactionContent = ({children}) => {
 	return children
 }
 
@@ -93,15 +93,67 @@ const Table = ({ transactions }) => {
 		console.log(editMode)
 	}
 	return (
-		<section className="table">
-			<h3 style={{ display: 'flex', justifyContent: 'space-around' }}>
-				<span>DATE</span>
-				<span>DESCRIPTION</span>
-				<span>AMOUNT</span>
-				<span>BALANCE</span>
-			</h3>
-			<Accordion />
-		</section>
+		<>
+			<table className="table">
+				<thead>
+					<tr className="table_header">
+						<th></th>
+						<th>DATE</th>
+						<th>DESCRIPTION</th>
+						<th>AMOUNT</th>
+						<th>BALANCE</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<TransactionRender />
+					{/* <tr className="expand">
+						<td
+							role="button"
+							onClick={handleExpandClick}
+							className="table_expand_btn">
+							<FaChevronUp />
+						</td>
+						<td>June 20th, 2023</td>
+						<td>Golden Bankery</td>
+						<td>$ 5.00</td>
+						<td>$ 2850.12</td>
+					</tr> */}
+
+					{/* <tr>
+						<td className="expanded_details"></td>
+						<td colSpan="4" className="panel expanded_details">
+							<ul>
+								<li>Transaction Type: Electronic</li>
+								<li>
+									Category:
+									{!editMode.category ? (
+										<TransactionContent>
+											Food
+											<button onClick={() => handleEditClick('category')}>
+												<FaPencilAlt />
+											</button>
+										</TransactionContent>
+									) : (
+										<Input inputParams={{ type: 'text' }} />
+									)}
+								</li>
+								<li>
+									Notes:
+									{!editMode.notes ? (
+										<TransactionContent>
+											<button onClick={() => handleEditClick('notes')}>
+												<FaPencilAlt />
+											</button>
+										</TransactionContent>
+									) : null}
+								</li>
+							</ul>
+						</td>
+					</tr> */}
+				</tbody>
+			</table>
+		</>
 	)
 }
 

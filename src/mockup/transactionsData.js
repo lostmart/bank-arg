@@ -8,8 +8,8 @@ export const transactionsData = {
 				balance: 2082.79,
 				transactions: [
 					{
-						date: '2023-06-07T07:35:24.201Z',
-						description: '',
+						date: '2023-06-01T07:35:24.201Z',
+						description: 'Lorem ipsum dolor sit, amet consectetur',
 						amount: 450,
 						accoundId: 'x8349',
 						transactionType: 'Electronic',
@@ -18,8 +18,8 @@ export const transactionsData = {
 						balance: 2082.79,
 					},
 					{
-						date: '2023-06-07T07:35:24.201Z',
-						description: '',
+						date: '2023-06-03T07:35:24.201Z',
+						description: 'Consectetur, nam. Explicabo',
 						amount: 450,
 						accoundId: 'x8349',
 						transactionType: 'Direct debit',
@@ -29,7 +29,7 @@ export const transactionsData = {
 					},
 					{
 						date: '2023-06-07T07:35:24.201Z',
-						description: '',
+						description: 'Facilis rem, at eaque officiis neque',
 						amount: 450,
 						accoundId: 'x8349',
 						transactionType: 'Check',
@@ -59,7 +59,7 @@ export const transactionsData = {
 			{
 				transactionId: 'x5201',
 				title: 'Argent Bank Credit Card',
-				balance: 184.30,
+				balance: 184.3,
 				transactions: [
 					{
 						date: '2023-06-07T07:35:24.201Z',
@@ -76,4 +76,3 @@ export const transactionsData = {
 		],
 	},
 }
-
