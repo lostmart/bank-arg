@@ -13,7 +13,6 @@ import Button from '../../components/UI/atoms/Button'
 
 import { fetchUserThunk } from '../../features/userSlice'
 
-
 const Login = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -42,7 +41,6 @@ const Login = () => {
 	}
 
 	const handleSubmit = async (e) => {
-		console.log('submitting ...')
 		e.preventDefault()
 
 		const url = 'http://localhost:3001/api/v1/user/login'

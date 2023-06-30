@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Section from '../../components/UI/organisms/Section'
 import { useEffect } from 'react'
 
@@ -8,6 +8,8 @@ import { fetchUserThunk } from '../../features/userSlice'
 import styles from './index.module.css'
 import Title from '../../components/UI/atoms/Title'
 import Table from '../../components/UI/organisms/Table'
+
+import { setUserError } from '../../features/userSlice'
 
 const Transactions = () => {
 	const dispatch = useDispatch()
@@ -19,9 +21,9 @@ const Transactions = () => {
 	}, [])
 
 	if (user.data) {
-		const selectedAccount = user.transactions.accounts.filter(
+		const selectedAccount = user.transactions.accounts.find(
 			(account) => account.transactionId === id
-		)[0]
+		)
 		return (
 			<main className="main bg-dark">
 				<Section className={styles.transaction}>
@@ -43,7 +45,7 @@ const Transactions = () => {
 			</main>
 		)
 	} else {
-		return <Navigate to="/login" />
+		dispatch(setUserError('Log in again, please'))
 	}
 }
 

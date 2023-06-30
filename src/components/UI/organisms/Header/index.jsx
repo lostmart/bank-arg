@@ -9,7 +9,6 @@ const Header = () => {
 	const dispatch = useDispatch()
 
 	const handleDestroyUser = () => {
-		console.log('destrying user ...')
 		dispatch(destroyUserData())
 		sessionStorage.clear()
 	}

@@ -2,18 +2,27 @@ import { useRef, useState } from 'react'
 import { FaChevronUp, FaPencilAlt } from 'react-icons/fa'
 import EditTransaction from '../../molecules/EditTransaction'
 
+/* utils  */
+import dateFormat from '../../../../utils/dateFormat'
+import dollarsFormat from '../../../../utils/dollaresFormat'
+import { useParams } from 'react-router-dom'
+
 /*  mini comp  */
 const TransactionContent = ({ children }) => {
 	return children
 }
 
-const Accordion = () => {
+const Accordion = ({ transaction }) => {
+	// console.log(transaction)
 	const panel = useRef(null)
 
 	const [editMode, setEditMode] = useState({
 		category: false,
 		notes: false,
 	})
+
+	const [category, setCategory] = useState(transaction.category)
+	const [notes, setNotes] = useState(transaction.notes)
 
 	/*  methods  */
 	const handleEditClick = (val) => {
@@ -51,19 +60,19 @@ const Accordion = () => {
 				<span>
 					<FaChevronUp />
 				</span>
-				<span>June 7th, 2023</span>
-				<span>Lorem ipsum dolor</span>
-				<span>$ 400.00</span>
-				<span>$ 2,000.21</span>
+				<span>{dateFormat(transaction.date)}</span>
+				<span> {transaction.description}</span>
+				<span>$ {dollarsFormat(transaction.amount)}</span>
+				<span>$ {dollarsFormat(transaction.balance)}</span>
 			</button>
 			<div ref={panel} className="panel">
 				<ul>
-					<li>Transaction Type: Electric</li>
+					<li>Transaction Type: {transaction.transactionType}</li>
 					<li>
 						Category:
 						{!editMode.category ? (
 							<TransactionContent>
-								Food
+								{category}
 								<button
 									className="panel_edit"
 									onClick={() => handleEditClick('category')}>
@@ -74,6 +83,8 @@ const Accordion = () => {
 							<EditTransaction
 								editParams={{
 									onClick: handleEditClick,
+									category,
+									transactionId: transaction.identifier,
 								}}
 							/>
 						)}
@@ -82,6 +93,7 @@ const Accordion = () => {
 						Notes:
 						{!editMode.notes ? (
 							<TransactionContent>
+								{notes}
 								<button
 									className="panel_edit"
 									onClick={() => handleEditClick('notes')}>
@@ -92,6 +104,8 @@ const Accordion = () => {
 							<EditTransaction
 								editParams={{
 									onClick: handleEditClick,
+									notes,
+									transactionId: transaction.identifier,
 								}}
 							/>
 						)}

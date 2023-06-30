@@ -532,3 +532,7 @@ a {
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
 }
+
+.trans-edit {
+	padding: 2px;
+}
