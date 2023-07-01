@@ -25,7 +25,6 @@ export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 		const response = await axios.post(url, data, config)
 		return response.data.body
 	} else {
-		/*  ?? needed ??  */
 		const navigate = useNavigate()
 		sessionStorage.clear()
 		navigate('/user')
@@ -54,6 +53,12 @@ export const userSlice = createSlice({
 			state.transactions = transactionsData.userTransactions
 			state.error = null
 		})
+		builder.addCase(fetchUserThunk.rejected, (state, action) => {
+			state.isLoading = false
+			state.data = null
+			state.transactions = null
+			state.error = 'log in error ...'
+		})
 		/*  error handling   */
 		builder.addCase(setUserError, (state, action) => {
 			return {
@@ -71,6 +76,7 @@ export const userSlice = createSlice({
 				error: null,
 				data: null,
 				transactions: null,
+				isLoading: false,
 			}
 		})
 	},

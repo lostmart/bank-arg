@@ -189,7 +189,8 @@ button {
 	color: #fff;
 }
 
-.sign-in-content {
+.sign-in-content,
+.sign-up-content {
 	box-sizing: border-box;
 	background-color: white;
 	width: 300px;
@@ -535,4 +536,19 @@ a {
 
 .trans-edit {
 	padding: 2px;
+}
+
+/*  sign up stuff  */
+.sign-up-content h2 {
+	margin: 12px 0 2px 0;
+}
+
+.sign-up-content p {
+	margin: 8px 0 18px 0;
+}
+
+.sign-up-content .error {
+	color: red;
+	margin-top: 1.1em;
+	display: block;
 }

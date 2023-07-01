@@ -79,7 +79,7 @@ const Login = () => {
 	return (
 		<main className="main bg-dark">
 			<section className="sign-in-content">
-				<FaUserCircle />
+				<FaUserCircle className="sign-in-icon" />
 				<h2>Sign in</h2>
 				<form>
 					<div className="input-wrapper">

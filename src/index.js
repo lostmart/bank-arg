@@ -17,6 +17,7 @@ import Login from './pages/Login'
 import UserPage from './pages/User'
 import NotFound from './pages/NotFound'
 import Transactions from './pages/Transactions'
+import SignUp from './pages/SignUp'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -37,7 +38,8 @@ root.render(
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
-						<Route path="login" element={<Login />} />/{' '}
+						<Route path="login" element={<Login />} />
+						<Route path="signup" element={<SignUp />} />
 						<Route
 							path="user"
 							element={
