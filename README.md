@@ -2,10 +2,62 @@
 
 This is a React app created using `create react app` and is used for tracking the users bank account. The name of the app is "ArgentBank".
 It uses the following technologies:
+
 - Redux for global state management
 - Axios for communicating with the backend
 - The authentication is based on tokens (JWT)
-- PropTypes for prop checking 
+- PropTypes for prop checking
+
+## Installation
+
+1. Clone this repo on your computer
+2. install its dependencies run `npm install`
+3. Download and install the API for the backend [BACKEND FOR THIS PROJECT](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API) - follow the instructions top run the API locally
+4. You should be able to log in with one of the accounts provided on the API repo
+
+## Folder Structure
+
+This project follows the [Atomic Design Methodology](https://atomicdesign.bradfrost.com/chapter-2/)
+
+![Atomic Design](atom-design.jpg)
+
+    .
+    ├── public                      # Public folder
+    ├── src                         # Redux Store inside
+        ├── app                     # Redux Store inside
+        ├── assets                  # Images and css files
+        ├── components              # Tools and utilities
+            ├── layouts             # Tools and utilities
+            ├── UI                  # UI components
+                ├── atoms           # Minimal UI part (input, button, label, etc)
+                ├── molecules       # Small group of atoms
+                ├── organisms       # Parts of pages (Cards, Hero, Error modal, etc)
+        ├── features                # Redux slices
+        ├── mockup                  # Mock data as examples for next stages of the API
+        ├── pages                   # App pages handled with react-router
+        ├── utils                   # formatting helper functions (currency and data)
+    └── README.md
+
+## Authentication
+The `/login` page requires a username and a password. If they are correct the user will be redirected to the protected route `/user`. A token will be stored in the browser's Session Storage. This JWT contains no sensitive information. It carries the user's id, the date of emition and expipre date of the encoded in the token. 
+
+## Redux Integration
+The user's intial state is 
+```javascript
+const initialState = {
+	isLoading: false,
+	error: null,
+	data: null,
+	transactions: null,
+}
+```
+Redux will use an async action from the Redux Toolkit ( createAsyncThunk )
+There are three possible states for this action:
+- pending (sets loading to true)
+- fulfilled (sets the user's data)
+- rejected (set the error to true)
+
+When the user log out the action `destroyUserData` will be dispatched and the data will be deleted from the Redux store and the token will be deleted from the browser's Session Storage.
 
 ## Available Scripts
 
@@ -19,10 +71,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -33,43 +82,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
