@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React app created using `create react app` and is used for tracking the users bank account. The name of the app is "ArgentBank".
+It uses the following technologies:
+- Redux for global state management
+- Axios for communicating with the backend
+- The authentication is based on tokens (JWT)
+- PropTypes for prop checking 
 
 ## Available Scripts
 
