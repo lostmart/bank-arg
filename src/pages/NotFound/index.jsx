@@ -11,12 +11,16 @@ import Button from '../../components/UI/atoms/Button'
 const NotFound = () => {
 	return (
 		<Hero>
-			<Section nameOfClass="hero-content">
+			<Section className="hero-content not-found">
 				<Paragraph nameOfClass="subtitle" text="Error 404" />
 				<Paragraph nameOfClass="subtitle" text="Page Not found" />
 				<Link to="/">
 					<Button
-						btnParams={{ nameOfClass: 'transaction-button', text: 'Home' }}
+						btnParams={{
+							className: 'transaction-button',
+							text: 'Home',
+							onClick: () => null,
+						}}
 					/>
 				</Link>
 			</Section>

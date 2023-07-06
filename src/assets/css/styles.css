@@ -124,6 +124,10 @@ button {
 	cursor: pointer;
 }
 
+.not-found {
+	min-width: 40%;
+}
+
 @media (min-width: 920px) {
 	.hero {
 		height: 400px;

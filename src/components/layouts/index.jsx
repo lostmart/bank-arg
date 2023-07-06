@@ -15,7 +15,6 @@ const Layout = () => {
 	const dispatch = useDispatch()
 
 	const user = useSelector((state) => state.user)
-	const balance = useSelector((state) => state.balance)
 
 	useEffect(() => {
 		if (sessionStorage.getItem('token')) {

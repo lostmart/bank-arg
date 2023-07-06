@@ -10,6 +10,7 @@ const initialState = {
 	transactions: null,
 }
 
+/*  axios error handler in "fetchUserThunk.rejected" */
 export const fetchUserThunk = createAsyncThunk('users/fetchUser', async () => {
 	const url = 'http://localhost:3001/api/v1/user/profile'
 	const token = sessionStorage.getItem('token')

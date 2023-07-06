@@ -38,11 +38,14 @@ This project follows the [Atomic Design Methodology](https://atomicdesign.bradfr
         ├── utils                   # formatting helper functions (currency and data)
     └── README.md
 
-## Authentication
-The `/login` page requires a username and a password. If they are correct the user will be redirected to the protected route `/user`. A token will be stored in the browser's Session Storage. This JWT contains no sensitive information. It carries the user's id, the date of emition and expipre date of the encoded in the token. 
+## Authentication :office:
+
+The `/login` page requires a username and a password. If they are correct the user will be redirected to the protected route `/user`. A token will be stored in the browser's Session Storage. This JWT contains no sensitive information. It carries the user's id, the date of emition and expipre date of the encoded in the token.
 
 ## Redux Integration
-The user's intial state is 
+
+The user's intial state is
+
 ```javascript
 const initialState = {
 	isLoading: false,
@@ -51,13 +54,17 @@ const initialState = {
 	transactions: null,
 }
 ```
+
 Redux will use an async action from the Redux Toolkit ( createAsyncThunk )
 There are three possible states for this action:
+
 - pending (sets loading to true)
 - fulfilled (sets the user's data)
 - rejected (set the error to true)
 
 When the user log out the action `destroyUserData` will be dispatched and the data will be deleted from the Redux store and the token will be deleted from the browser's Session Storage.
+
+## Sawgger #85EA2D
 
 ## Available Scripts
 
@@ -70,8 +77,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-
 
 ### `npm run build`
 
